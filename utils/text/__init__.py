@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import re
-from packaging import version
 import phonemizer
 from phonemizer.phonemize import phonemize
+from packaging import version
 from utils.text import cleaners
 from utils.text.symbols import make_symbols, symbols, phonemes, _phoneme_punctuations, _bos, \
     _eos
@@ -47,7 +47,7 @@ def text2phone(text, language):
                 for punct in punctuations:
                     ph = ph.replace('| |\n', '|'+punct+'| |', 1)
     elif version.parse(phonemizer.__version__) >= version.parse('2.1'):
-        ph = phonemize(text, separator=seperator, strip=False, njobs=1, language=language, preserve_punctuation=True, language_switch='remove-flags')
+        ph = phonemize(text, separator=seperator, strip=False, njobs=1, language=language, preserve_punctuation=True, language_switch='keep-flags', backend='segments')
         # this is a simple fix for phonemizer.
         # https://github.com/bootphon/phonemizer/issues/32
         if punctuations:

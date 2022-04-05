@@ -46,7 +46,7 @@ def to_camel(text):
 
 def setup_model(num_chars, num_speakers, c, speaker_embedding_dim=None):
     print(" > Using model: {}".format(c.model))
-    MyModel = importlib.import_module('TTS.tts.models.' + c.model.lower())
+    MyModel = importlib.import_module('models.' + c.model.lower())
     MyModel = getattr(MyModel, to_camel(c.model))
     if c.model.lower() in "tacotron":
         model = MyModel(num_chars=num_chars + getattr(c, "add_blank", False),
@@ -103,10 +103,10 @@ def setup_model(num_chars, num_speakers, c, speaker_embedding_dim=None):
                         speaker_embedding_dim=speaker_embedding_dim)
     elif c.model.lower() == "glow_tts":
         model = MyModel(num_chars=num_chars + getattr(c, "add_blank", False),
-                        hidden_channels_enc=c['hidden_channels_encoder'],
-                        hidden_channels_dec=c['hidden_channels_decoder'],
-                        hidden_channels_dp=c['hidden_channels_duration_predictor'],
-                        out_channels=c.audio['num_mels'],
+                        hidden_channels_enc=c['hidden_channels_enc'],
+                        hidden_channels_dec=c['hidden_channels_dec'],
+                        hidden_channels_dp=c['hidden_channels_dp'],
+                        out_channels=c.out_channels,
                         encoder_type=c.encoder_type,
                         encoder_params=c.encoder_params,
                         use_encoder_prenet=c["use_encoder_prenet"],
