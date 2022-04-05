@@ -9,12 +9,11 @@ hyperparameter. Some cleaners are English-specific. You'll typically want to use
   3. "basic_cleaners" if you do not want to transliterate (in this case, you should also update
      the symbols in symbols.py to match your data).
 '''
-
 import re
-from unidecode import unidecode
 from .number_norm import normalize_numbers
 from .abbreviations import abbreviations_en, abbreviations_fr
 from .time import expand_time_english
+from unidecode import unidecode
 
 # Regular expression matching whitespace:
 _whitespace_re = re.compile(r'\s+')
