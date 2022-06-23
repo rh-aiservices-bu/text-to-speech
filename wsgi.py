@@ -23,7 +23,10 @@ def status():
 
 @application.route('/speech', methods=['POST'])
 def speech_generation():
-    data = request.form['data'] or '{}'
+    if request.data:
+        data = request.data
+    else:
+        data = request.form['data'] or '{}'
     body = json.loads(data)
     print('done')
     return ttsoutput(body)
