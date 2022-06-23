@@ -13,6 +13,7 @@ application = Flask(__name__)
 
 
 @application.route('/')
+@application.route('/main')
 def main():
     return render_template('home.html')
 
