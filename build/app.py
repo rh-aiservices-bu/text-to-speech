@@ -13,9 +13,11 @@ def ttsoutput(textinput):
             "tts_models/en/ljspeech/glow-tts",
             "--vocoder_name",
             "vocoder_models/universal/libri-tts/fullband-melgan",
+            "--out_path",
+            "tts_out.wav"
         ]
     )
-    output = open("text-to-speech/tts_output.wav", "rb")
+    output = open("tts_out.wav", "rb")
     st.text(t)
     st.audio(output)
     return
