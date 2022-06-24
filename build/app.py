@@ -5,7 +5,7 @@ from scipy.io import wavfile
 import IPython.display as ipd
 
 x = 1.0
-wavPath = "text-to-speech/tts_out.wav"
+wavPath = "tts_out.wav"
 defaultRate = 24000
 
 def ttsoutput(textinput):
