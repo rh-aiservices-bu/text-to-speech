@@ -1,4 +1,3 @@
 # text-to-speech
 
-Deploy from Dockerfile at
-quay.io/trnelson/tts
+Deploy from Dockerfile in build folder
