@@ -14,7 +14,7 @@ col1, col2 = st.columns([115,20])
 with col1:
     st.title('Text-to-Speech with Coqui TTS')
 with col2:
-    st.image('images/Icon-Red_Hat-Volume_up-A-Black-RGB.png', width=95)
+    st.image('Icon-Red_Hat-Volume_up-A-Black-RGB.png', width=95)
 
 
 st.markdown("""<hr style="height:3px;border:none;color:#333;background-color:#333;" /> """, unsafe_allow_html=True)
