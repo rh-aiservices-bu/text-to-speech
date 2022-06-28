@@ -1,12 +1,23 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import subprocess
 import matplotlib.pyplot as plt
 from scipy.io import wavfile
 import IPython.display as ipd
 
 x = 1.0
+
 wavPath = "tts_out.wav"
 defaultRate = 24000
+st.set_page_config(layout="centered")
+col1, col2 = st.columns([115,20])
+with col1:
+    st.title('Text-to-Speech with Coqui TTS')
+with col2:
+    st.image('images/Icon-Red_Hat-Volume_up-A-Black-RGB.png', width=95)
+
+
+st.markdown("""<hr style="height:3px;border:none;color:#333;background-color:#333;" /> """, unsafe_allow_html=True)
 
 def ttsoutput(textinput):
     t = textinput
@@ -24,8 +35,10 @@ def ttsoutput(textinput):
         ]
     )
     output = open(wavPath, "rb")
-    st.text(t)
+    st.markdown(t)
     samplingFrequency, signalData = wavfile.read(wavPath)
+    st.sidebar.markdown("## Output Speed")
+    st.sidebar.markdown("You can **change** the audio samples per second to vary the *speed* of the audio.")
 
     st.audio(output)
     fig,ax = plt.subplots()
@@ -42,7 +55,7 @@ def ttsoutput(textinput):
 
     plt.subplot(212)
 
-    plt.specgram(signalData[:120000], mode='psd',Fs=samplingFrequency, cmap = 'magma')
+    plt.specgram(signalData[:120000], mode='psd',Fs=samplingFrequency, cmap = 'inferno')
     plt.xlabel('Time')
     plt.ylabel('Hz')
     st.pyplot(fig)
@@ -60,11 +73,16 @@ def changeAudio():
 
     return 1
 
-x = st.sidebar.slider('Rate', min_value=0.5, max_value=2.0, step=0.05, value=1.0, key=5)
-st.sidebar.write(f"rate={x*defaultRate*changeAudio()}")
-st.sidebar.markdown("## Controls")
-st.sidebar.markdown("You can **change** the values to change the *chart*.")
+with st.form('Form1'):
+    input1 = st.text_input("Say Something")
+    submit1 = st.form_submit_button('Submit')
+    ttsoutput(input1)
+
+with st.sidebar.form('Form2'):
+    x = st.slider('Rate (24000 * x)', min_value=0.5, max_value=2.0, step=0.05, value=1.0, key=5)
+    submit2 = st.form_submit_button('Submit')
+    st.sidebar.write(f"rate={x*defaultRate*changeAudio()}")
 
 
-ttsoutput(st.text_input("Say Something"))
+
 
