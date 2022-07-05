@@ -1,2 +1,5 @@
 Flask==2.0.3
 TTS==0.6.0
+Unidecode==1.3.4
+phonemizer==3.2.1
+gdown==4.5.1
