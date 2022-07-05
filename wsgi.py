@@ -15,7 +15,7 @@ def ttsoutput(textinput):
             "--vocoder_name",
             "vocoder_models/universal/libri-tts/fullband-melgan",
             "--out_path",
-            "tts_output.wav"
+            "output/tts_output.wav"
         ])
     output = open('tts_output.wav', 'rb')
     encoded_output = base64.b64encode(output.read())  # bytes
