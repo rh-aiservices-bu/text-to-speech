@@ -36,6 +36,5 @@ def speech_generation():
     else:
         data = request.form['data'] or '{}'
     body = json.loads(data)
-    print('done')
     return ttsoutput(body)
 
